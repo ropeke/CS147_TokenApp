@@ -1,0 +1,141 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <ImageView
+        android:id="@+id/retake_photo_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="@string/retake_photo_icon"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp" 
+        android:layout_marginStart="15dp" >
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/accept_photo_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="@string/accept_photo_icon"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp" >
+    </ImageView>
+    
+    <ImageView
+        android:id="@+id/image_placeholder"
+        android:layout_width="100dp"
+        android:layout_height="300dp"
+        android:contentDescription="@string/placeholder_image"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" >
+    </ImageView>
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/image_placeholder"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="@string/caption_placeholder"
+        android:inputType="textMultiLine" />
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText1"
+        android:text="@string/share_with"
+        android:textSize="20sp"
+        android:gravity="center">
+        
+    </TextView>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/editText1"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
+        
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+            
+            <Button
+                android:id="@+id/me_selector_button"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/lock48_red"
+                android:layout_gravity="center_horizontal">
+            </Button>
+            
+            <TextView
+                android:text="@string/me_icon_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textStyle="bold" />           
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+            
+            <Button
+                android:id="@+id/friends_selector_button"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/friends_grey"
+                android:layout_gravity="center_horizontal">
+            </Button>
+            
+            <TextView 
+                android:text="@string/friends_icon_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+            
+            <Button
+                android:id="@+id/public_share_button"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/earth_grey"
+                android:layout_gravity="center_horizontal">
+            </Button>
+            
+            <TextView 
+                android:text="@string/public_icon_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        
+    </LinearLayout>
+
+</RelativeLayout>

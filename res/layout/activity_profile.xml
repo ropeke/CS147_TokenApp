@@ -1,0 +1,113 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.hcid.token.ProfileActivity" >
+
+    <Button
+        android:id="@+id/close_profile_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/profile_picture"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/close47" />
+    
+    <Button
+        android:id="@+id/settings_profile_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignEnd="@+id/profile_picture"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/settings21"/>
+
+    <ImageView
+        android:id="@+id/profile_picture"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:layout_alignTop="@+id/close_profile_button"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/hipster_photographer" />
+
+    <TextView
+        android:id="@+id/text_label_profile_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/profile_picture"
+        android:layout_alignStart="@+id/profile_picture"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:text="@string/user_name"
+        android:textStyle="bold"
+        android:textSize="30sp" />
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/text_label_profile_name">
+        
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/memories_label"
+                android:textSize="12sp"
+                android:textStyle="bold" >
+
+            </TextView>
+            
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="61%"
+                android:textSize="14sp">
+            </TextView>
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/profile_views_label"
+                android:textSize="12sp"
+                android:textStyle="bold" >
+
+            </TextView>
+            
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="12,173"
+                android:textSize="14sp">
+            </TextView>
+            
+        </LinearLayout>
+        
+        
+    </LinearLayout>
+
+</RelativeLayout>
