@@ -1,13 +1,20 @@
 package com.hcid.token;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.parse.ParseFile;
+import com.parse.ParseGeoPoint;
+import com.parse.ParseObject;
+
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,7 +22,9 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.location.Location;
 import android.media.ExifInterface;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -27,7 +36,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -39,9 +50,13 @@ public class CameraActivity extends Activity implements OnClickListener {
 	private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
 	
 	private boolean meSelector = true;
+	private boolean friendSelector = false;
 	private boolean publicSelector = false;
+	private Bitmap myBitmap = null;
+	String filename;
 	
 	private Uri fileUri;
+	private Notification n;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -106,13 +121,14 @@ public class CameraActivity extends Activity implements OnClickListener {
 	                     //	data.getData(), Toast.LENGTH_LONG).show();
 	        	Log.d("TAG", "SHIT WORKS NIGGUH");
 	        	ImageView placeholderImage = (ImageView) findViewById(R.id.image_placeholder);
-	        	String filename = fileUri.toString();
+	        	filename = fileUri.toString();
 	        	filename = filename.substring(7);
 	        	
-	        	Bitmap myBitmap = BitmapFactory.decodeFile(filename);
 	        	Log.d("TAG", filename);
-
 	            try {
+	            	while (myBitmap == null) {
+	            		myBitmap = BitmapFactory.decodeFile(filename);
+	            	}
 	                ExifInterface exif = new ExifInterface(filename);
 	                int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
 	                Log.d("EXIF", "Exif: " + orientation);
@@ -172,15 +188,19 @@ public class CameraActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		if (v == findViewById(R.id.accept_photo_icon)) {
+			postToParse();
 			Intent startFreshMap = new Intent(this, MapActivity.class);
-			startFreshMap.putExtra("key", "value");
+			String determinedValue = determineValue();
+			startFreshMap.putExtra("key", determinedValue);
 			startActivity(startFreshMap);
 		}
 		if (v == findViewById(R.id.friends_selector_button)) {
+//			closeKeyboard();
         	showDialog();
 		}
 		if (v.getId() == R.id.me_selector_button) {
 			Button meSelectorButton = (Button) findViewById(v.getId());
+			closeKeyboard();
 			if (!meSelector) {
 				meSelectorButton.setBackgroundResource(R.drawable.lock48_red);
 			} else {
@@ -190,6 +210,7 @@ public class CameraActivity extends Activity implements OnClickListener {
 		}
 		if (v.getId() == R.id.public_share_button) {
 			Button publicSelectorButton = (Button) findViewById(v.getId());
+			closeKeyboard();
 			if (!publicSelector) {
 				publicSelectorButton.setBackgroundResource(R.drawable.earth_blue);
 			} else {
@@ -200,11 +221,20 @@ public class CameraActivity extends Activity implements OnClickListener {
 
 	}
 	
+	private void closeKeyboard() {
+		Toast.makeText(this, "Working...", Toast.LENGTH_LONG).show();
+		EditText myEditText = (EditText) findViewById(R.id.editText1);  
+		InputMethodManager imm = (InputMethodManager)getSystemService(
+		      Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(myEditText.getWindowToken(), 0);
+	}
+	
 	private void showDialog() {
 	AlertDialog dialog; 
 	//following code will be in your activity.java file 
 	final CharSequence[] items = {" --- All --- "," Janet "," Stephany "," Bruno "};
-	                // arraylist to keep the selected items
+	                
+					// arraylist to keep the selected items
 	                final ArrayList<Integer> selectedItems=new ArrayList<Integer>();
 	               
 	                AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -233,6 +263,9 @@ public class CameraActivity extends Activity implements OnClickListener {
 	                     if (!selectedItems.isEmpty()) {
 	                    	 Button friendsButton = (Button) findViewById(R.id.friends_selector_button);
 	                    	 friendsButton.setBackgroundResource(R.drawable.multiple25_green);
+	                    	 friendSelector = true;
+	                     } else {
+	                    	 friendSelector = false;
 	                     }
 	                	 //  Your code when user clicked on OK
 	                     //  You can write the code  to save the selected item here
@@ -250,5 +283,34 @@ public class CameraActivity extends Activity implements OnClickListener {
 	                dialog = builder.create();//AlertDialog dialog; create like this outside onClick
 	                dialog.show();
 	        }
+	
+	private void postToParse() {
+		
+		Intent intent = getIntent();
+		Location location = intent.getParcelableExtra("location");
+		ParseGeoPoint geoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
+		
+		TokenPost post = new TokenPost();
+		post.setLocation(geoPoint);
+		post.setCaption(((EditText)findViewById(R.id.editText1)).getText().toString());
+		post.setLikeCount(100);
+		post.setAccess(meSelector, friendSelector, publicSelector);
+		
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+		byte[] data = baos.toByteArray();
+		
+		ParseFile tokenImage = new ParseFile("token_image.jpg", data); //TODO: FIND BETTER NAME
+		post.setTokenImage(tokenImage);
+		
+		post.saveInBackground();
+		
+	}
+	
+	private String determineValue() {
+		if (publicSelector) return "value1";
+		if (friendSelector) return "value2";
+		return "value";
+	}
 	
 }

@@ -1,4 +1,4 @@
-<LinearLayout 
+ <RelativeLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,49 +9,43 @@
     <ImageView
         android:id="@+id/media_image_placeholder"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:layout_marginTop="20dp" />
+        android:layout_height="match_parent" />
     
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        style="?android:attr/buttonBarStyle">
-        
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            
-            <Button
-                android:id="@+id/thumbs_down"
-	            android:layout_width="60dp"
-	            android:layout_height="60dp"
-	            android:layout_marginTop="10dp"
-	            android:background="@drawable/thumb52_dislike_grey"
-	            android:layout_gravity="center_horizontal" />
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            
-        	<Button
-        	    android:id="@+id/thumbs_up"
-	            android:layout_width="60dp"
-	            android:layout_height="60dp"
-	            android:layout_marginTop="10dp"
-	            android:layout_gravity="center_horizontal"
-	            android:background="@drawable/thumb52_like_grey" />
-            
-        </LinearLayout>
-        
-        
-        
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/close_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/x_redesign" />
+    
+    <ImageView 
+        android:id="@+id/thumbs_down"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="475dp"
+        android:src="@drawable/dislike" />
+    
+    <TextView 
+        android:id="@+id/like_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="36sp"
+        android:textColor="#3FAED9"
+        android:layout_toEndOf="@id/thumbs_down"
+        android:layout_marginStart="35dp"
+        android:text="+100"
+        android:layout_marginTop="550dp"/>
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/thumbs_up"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignBottom="@+id/thumbs_down"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="475dp"
+        android:layout_marginRight="40dp"
+        android:src="@drawable/like" />
+
+</RelativeLayout>

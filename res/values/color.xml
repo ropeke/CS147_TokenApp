@@ -144,4 +144,5 @@
  <color name="TokenGreen">#54C242</color>
  <color name="TokenBlue">#3FAED9</color>
  <color name="TokenGray">#666666</color>
+ <color name="NewTokenGreen">#51C140</color>
 </resources>

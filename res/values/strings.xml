@@ -26,5 +26,9 @@
     <string name="profile_views_label">Profile Views</string>
     <string name="title_activity_show_media">ShowMediaActivity</string>
     <string name="title_activity_tutorial">TutorialActivity</string>
+    <string name="title_activity_show_friend_media">ShowFriendMediaActivity</string>
+    <string name="facebook_app_id">901186336601012</string>
+    <string name="title_facebook_login">Token - Facebook Login</string>
+    <string name="title_activity_hoover_tower">HooverTower</string>
 
 </resources>

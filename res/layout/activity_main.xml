@@ -32,13 +32,11 @@
 	    android:text="@string/first_time_prompt"
 	    android:textColor="@color/Gray"/>
 	
-	<ImageView
-	    android:contentDescription="@string/login_facebook"
-	    android:id="@+id/login_facebook_button"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_gravity="center_horizontal"
-	    android:layout_marginTop="50dp"
-	    android:src="@drawable/login_facebook" />
+	<com.facebook.widget.LoginButton
+            android:id="@+id/authButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp" />
 
 </LinearLayout>

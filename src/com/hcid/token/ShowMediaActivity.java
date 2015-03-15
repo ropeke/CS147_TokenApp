@@ -13,11 +13,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class ShowMediaActivity extends Activity implements OnClickListener {
 
-	private static final String public_string = "/storage/emulated/0/Pictures/Token/IMG_9034.jpg";
-	private static final String friend1_string = "/storage/emulated/0/Pictures/Token/IMG_9038.jpg";
+	private static final String public_string = "/storage/emulated/0/Pictures/Token/Meyer_Library.jpg";
+	private static final String friend1_string = "/storage/emulated/0/Pictures/Token/IMG_20150216_184504.jpg";
 	
 	
 	@Override
@@ -26,9 +28,12 @@ public class ShowMediaActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_show_media);
 		
     	ImageView placeholderImage = (ImageView) findViewById(R.id.media_image_placeholder);
-    	Button thumbsUp = (Button) findViewById(R.id.thumbs_up);
+    	
+    	ImageView closeButton = (ImageView) findViewById(R.id.close_button);
+    	closeButton.setOnClickListener(this);
+    	ImageView thumbsUp = (ImageView) findViewById(R.id.thumbs_up);
     	thumbsUp.setOnClickListener(this);
-    	Button thumbsDown = (Button) findViewById(R.id.thumbs_down);
+    	ImageView thumbsDown = (ImageView) findViewById(R.id.thumbs_down);
     	thumbsDown.setOnClickListener(this);
     	
     	String filename;
@@ -87,19 +92,34 @@ public class ShowMediaActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		if (v.getId() == R.id.thumbs_down) {
-			Button thumbsDown = (Button) findViewById(v.getId());
-			thumbsDown.setBackgroundResource(R.drawable.thumb52_dislike);
-			Button thumbsUp = (Button) findViewById(R.id.thumbs_up);
-			thumbsUp.setBackgroundResource(R.drawable.thumb52_like_grey);
-		}
 		if (v.getId() == R.id.thumbs_up) {
-			Button thumbsDown = (Button) findViewById(R.id.thumbs_down);
-			thumbsDown.setBackgroundResource(R.drawable.thumb52_dislike_grey);
-			Button thumbsUp = (Button) findViewById(v.getId());
-			thumbsUp.setBackgroundResource(R.drawable.thumb52_like);
+			thumbsUp();
+		}
+		if (v.getId() == R.id.thumbs_down) {
+			thumbsDown();
+		}
+		if (v.getId() == R.id.close_button) {
+			finish();
 		}
 		
+	}
+	
+	public void thumbsUp() {
+		ImageView thumbsUp = (ImageView) findViewById(R.id.thumbs_up);
+		thumbsUp.setImageResource(R.drawable.likeblue);
+		ImageView thumbsDown = (ImageView) findViewById(R.id.thumbs_down);
+		thumbsDown.setImageResource(R.drawable.dislike);
+		TextView likeCounter = (TextView) findViewById(R.id.like_counter);
+		likeCounter.setText("+101");
+	}
+	
+	public void thumbsDown() {
+		ImageView thumbsUp = (ImageView) findViewById(R.id.thumbs_up);
+		thumbsUp.setImageResource(R.drawable.like);
+		ImageView thumbsDown = (ImageView) findViewById(R.id.thumbs_down);
+		thumbsDown.setImageResource(R.drawable.dislikeblue);
+		TextView likeCounter = (TextView) findViewById(R.id.like_counter);
+		likeCounter.setText("+99");
 	}
 	
 }

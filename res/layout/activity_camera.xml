@@ -33,31 +33,26 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" >
     </ImageView>
-
+    
     <EditText
         android:id="@+id/editText1"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_below="@id/image_placeholder"
-        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="40dp"
         android:ems="10"
         android:hint="@string/caption_placeholder"
-        android:inputType="textMultiLine" />
-    
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editText1"
-        android:text="@string/share_with"
-        android:textSize="20sp"
-        android:gravity="center">
-        
-    </TextView>
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+    </EditText>
     
     <LinearLayout
+        android:id="@+id/button_lineup"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_below="@id/editText1"
+        android:layout_below="@id/image_placeholder"
         android:layout_marginTop="25dp"
         android:orientation="horizontal">
         
@@ -137,5 +132,14 @@
         </LinearLayout>
         
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image_placeholder"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/share_with"
+        android:textSize="20sp" />
 
 </RelativeLayout>

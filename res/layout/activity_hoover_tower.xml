@@ -1,0 +1,147 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hcid.token.HooverTower" >
+
+    <ImageView
+        android:id="@+id/fullscreen_hoover_tower_image"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <ImageView
+        android:id="@+id/exit_button"
+        android:layout_width="@dimen/top_icon_size"
+        android:layout_height="@dimen/top_icon_size"
+        android:layout_marginStart="@dimen/top_icon_margin"
+        android:layout_marginTop="@dimen/top_icon_margin"
+        android:background="@drawable/x_redesign" />
+
+    <ImageView
+        android:id="@+id/post_button"
+        android:layout_width="@dimen/top_icon_size"
+        android:layout_height="@dimen/top_icon_size"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/top_icon_margin"
+        android:layout_marginTop="@dimen/top_icon_margin"
+        android:background="@drawable/place_token" />
+
+    <LinearLayout
+        android:id="@+id/bottom_div"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="@dimen/bottom_div_margin"
+        android:layout_marginStart="@dimen/bottom_div_margin"
+        android:background="#80FFFFFF"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/share_with_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/share_with"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="@dimen/filter_button_div_width"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/me_toggle_button"
+                    android:layout_width="@dimen/share_button_size"
+                    android:layout_height="@dimen/share_button_size"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/filter_button_margin"
+                    android:layout_marginTop="@dimen/filter_button_margin"
+                    android:background="@drawable/lock48_red" />
+
+                <TextView
+                    android:id="@+id/me_toggle_button_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/me_icon_label"
+                    android:textColor="@color/TokenRed"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/filter_button_div_width"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/share_with_button_spacing"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/friend_toggle_button"
+                    android:layout_width="@dimen/share_button_size"
+                    android:layout_height="@dimen/share_button_size"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/filter_button_margin"
+                    android:layout_marginTop="@dimen/filter_button_margin"
+                    android:background="@drawable/friends_grey" />
+
+                <TextView
+                    android:id="@+id/friend_toggle_button_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/friends_icon_label"
+                    android:textColor="@color/TokenGreen"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/filter_button_div_width"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/share_with_button_spacing"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/public_toggle_button"
+                    android:layout_width="@dimen/share_button_size"
+                    android:layout_height="@dimen/share_button_size"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/filter_button_margin"
+                    android:layout_marginTop="@dimen/filter_button_margin"
+                    android:background="@drawable/earth_grey" />
+
+                <TextView
+                    android:id="@+id/public_toggle_button_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/public_icon_label"
+                    android:textColor="@color/TokenBlue"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+        
+        <TextView
+            android:id="@+id/write_caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[...Write caption...]"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
